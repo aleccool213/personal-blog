@@ -37,10 +37,6 @@ module.exports = {
             title: `Uses`,
             slug: `/uses`,
           },
-          {
-            title: `About`,
-            slug: `/about`,
-          },
         ],
         externalLinks: [
           {
@@ -56,6 +52,7 @@ module.exports = {
             url: `https://unsplash.com/@aleccool21`,
           },
         ],
+        feedTitle: "Caffeinated Coding - Alec Brunelle's Blog",
       },
     },
     `gatsby-plugin-sitemap`,
