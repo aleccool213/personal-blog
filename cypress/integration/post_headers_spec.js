@@ -1,4 +1,4 @@
-import postSlugs from "../post_slugs";
+import postSlugs from "../canonical_post_slugs";
 
 describe("Post Headers", () => {
   it("successfully loads the root", () => {
@@ -6,9 +6,9 @@ describe("Post Headers", () => {
   });
 
   it("should have proper headers for each post", () => {
-    postSlugs.forEach(postSlug => {
+    postSlugs.forEach((postSlug) => {
       cy.visit(`/${postSlug}`).then(() => {
-        cy.get("head").within(_headElement => {
+        cy.get("head").within((_headElement) => {
           // description
           cy.get('meta[name="description"]').should("exist");
 

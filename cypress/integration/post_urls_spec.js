@@ -6,7 +6,7 @@ describe("Post URLS are correct values", () => {
   });
 
   it("all of the post slugs should work", () => {
-    postSlugs.forEach(postSlug => {
+    postSlugs.forEach((postSlug) => {
       cy.visit(`/${postSlug}`).then(() => {
         // content appears
         cy.get("p");
@@ -15,8 +15,7 @@ describe("Post URLS are correct values", () => {
   });
 });
 
-// TODO: re-enable when you have 404 pages working again
-xdescribe("404 not found shows when going to bad link", () => {
+describe("404 not found shows when going to bad link", () => {
   it("successfully loads the root", () => {
     cy.visit("/");
   });

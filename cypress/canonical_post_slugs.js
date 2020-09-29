@@ -1,9 +1,5 @@
 /**
- * A list of all the post slugs.
- *
- * Used to assert posts have the correct links.
- * This is very important to assert because posts
- * are out in the wild and cannot break.
+ * A list of all the post slugs which also contain canonical_urls.
  */
 const postSlugs = [
   "beautiful-dev-tools-fish-shell",
@@ -14,14 +10,10 @@ const postSlugs = [
   "pragmatic-programmer-book-highlights",
   "the-hitchhikers-guide-to-cypress-end-to-end-testing",
   "how-to-make-money-from-your-software-blog-without-hosting-ads",
-  "mac-stack",
-  "apollo-local-state-pains",
   "quit-google-analytics-self-hosted-gatsby-statistics-with-ackee",
   "publishing-javascript-package-automatically-with-github-actions",
   "better-way-to-use-graphql-in-react",
   "hey-app-review-changing-how-you-feel-about-email",
-  "build-next-js-blog-with-cosmics-graphql-api",
-  "running-sql-migrations-before-booting-docker-compose-services",
 ];
 
 module.exports = postSlugs;
