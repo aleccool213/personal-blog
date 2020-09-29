@@ -4,6 +4,7 @@ banner: ./images/photo1.jpg
 date: 2020-10-01
 slug: "/running-sql-migrations-before-booting-docker-compose-services/"
 description: Having a great local development experience is critical to happy engineers.
+canonicalUrl: https://medium.com/@yourboybigal/running-sql-migrations-before-booting-docker-compose-services-a8909bf03cbc
 ---
 
 Having a great local development experience is critical to happy engineers. Developers are happy to come into a codebase and start hacking away at problems, as opposed to dreading picking up their laptops. As services become more and more separated into separate "micro-services", new problems arise. When I look back on my short career, one problem that has induced me a lot of pain are SQL Migrations and how they should work in Docker Compose. Ideally, they should run before your web apps boot so they have access to a well-structured database. Your strategy to make this happen may be different for each environment, in this post I'll cover your local experience which easily extends to CI and I'll also touch how to do this in production.
