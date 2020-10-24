@@ -59,6 +59,13 @@ module.exports = {
         feedTitle: "Caffeinated Coding - Alec Brunelle's Blog",
       },
     },
+    {
+      resolve: "@sentry/gatsby",
+      options: {
+        dsn:
+          "https://3ffa3d7b4a394317b74a99b662bab715@o361849.ingest.sentry.io/4045412",
+      },
+    },
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,

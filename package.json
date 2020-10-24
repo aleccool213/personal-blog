@@ -19,12 +19,13 @@
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^2.6.1",
+    "@sentry/gatsby": "^5.27.1",
     "gatsby": "^2.20.36",
+    "gatsby-plugin-ackee-tracker": "2.0.1",
+    "gatsby-plugin-favicon": "3.1.6",
     "gatsby-plugin-manifest": "^2.2.3",
     "gatsby-plugin-netlify": "^2.3.16",
     "gatsby-plugin-sitemap": "^2.2.19",
-    "gatsby-plugin-ackee-tracker": "2.0.1",
-    "gatsby-plugin-favicon": "3.1.6",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.10",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
