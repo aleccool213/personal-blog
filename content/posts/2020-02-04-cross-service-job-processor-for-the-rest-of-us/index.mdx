@@ -5,6 +5,10 @@ date: 2020-02-04
 canonicalUrl: "https://medium.com/better-programming/using-bull-to-manage-job-queues-in-a-node-js-micro-service-stack-7a6257e64509"
 description: When switching to a micro-service oriented stack versus the ol' single monolith, new problems arise.
 slug: "/cross-service-job-processor-for-the-rest-of-us/"
+tags:
+  - JavaScript
+  - Node.js
+  - Micro-Services
 ---
 
 When switching to a micro-service oriented architecture versus the ol' single monolith, new problems arise. The simple job processor of the past doesn't fit in this new architecture. Jobs may not be handled by a single app instance anymore, but many. I found Bull, a Redis-based queue for Node, to cover my needs, but needed tweaks to work in this new world. Due to this module being open-source, I knew the improvements I made to it could be contributed back to the package.
