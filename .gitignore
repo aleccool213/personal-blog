@@ -67,3 +67,6 @@ public
 .idea
 .vscode
 .DS_Store
+
+cypress/screenshots
+cypress/videos
