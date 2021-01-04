@@ -77,6 +77,7 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#996633`,
         display: `standalone`,
+        icon: "src/favicon.png",
       },
     },
     `gatsby-plugin-favicon`,
