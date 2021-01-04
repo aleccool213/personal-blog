@@ -18,7 +18,7 @@
     "cy:run:firefox": "cypress run --browser firefox"
   },
   "dependencies": {
-    "@lekoarts/gatsby-theme-minimal-blog": "^2.6.1",
+    "@lekoarts/gatsby-theme-minimal-blog": "^2.7.5",
     "@sentry/gatsby": "^5.27.1",
     "gatsby": "^2.20.36",
     "gatsby-plugin-ackee-tracker": "2.0.1",
