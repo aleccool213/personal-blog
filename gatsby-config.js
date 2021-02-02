@@ -38,6 +38,10 @@ module.exports = {
             slug: `/uses`,
           },
           {
+            title: `Contact`,
+            slug: `/contact`,
+          },
+          {
             title: `Newsletter`,
             slug: `/newsletter`,
           },
