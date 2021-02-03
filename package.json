@@ -41,5 +41,8 @@
     "hooks": {
       "pre-commit": "npm run test"
     }
+  },
+  "engines": {
+    "node": "14.15.4"
   }
 }
