@@ -2,8 +2,6 @@ require(`dotenv`).config({
   path: `.env`,
 });
 
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
-
 module.exports = {
   siteMetadata: {
     // Used for the title template on pages other than the index site
@@ -44,6 +42,10 @@ module.exports = {
           {
             title: `Newsletter`,
             slug: `/newsletter`,
+          },
+          {
+            title: `Tesla`,
+            slug: `/tesla-referral-link`,
           },
         ],
         externalLinks: [
@@ -99,14 +101,6 @@ module.exports = {
         // False due to detailed information being personalized:
         // https://github.com/electerious/Ackee/blob/master/docs/Anonymization.md#personal-data
         detailed: false,
-      },
-    },
-    shouldAnalyseBundle && {
-      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
-      options: {
-        analyzerMode: `static`,
-        reportFilename: `_bundle.html`,
-        openAnalyzer: false,
       },
     },
   ].filter(Boolean),
