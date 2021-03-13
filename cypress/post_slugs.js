@@ -22,6 +22,7 @@ const postSlugs = [
   "hey-app-review-changing-how-you-feel-about-email",
   "build-next-js-blog-with-cosmics-graphql-api",
   "running-sql-migrations-before-booting-docker-compose-services",
+  "storybook-develop-react-components-faster",
 ];
 
 module.exports = postSlugs;

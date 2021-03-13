@@ -15,6 +15,7 @@ const postSlugs = [
   "better-way-to-use-graphql-in-react",
   "hey-app-review-changing-how-you-feel-about-email",
   "running-sql-migrations-before-booting-docker-compose-services",
+  "storybook-develop-react-components-faster",
 ];
 
 module.exports = postSlugs;
