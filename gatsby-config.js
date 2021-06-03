@@ -3,6 +3,7 @@ require(`dotenv`).config({
 });
 
 module.exports = {
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
     // Used for the title template on pages other than the index site
     siteTitle: `Caffeinated Coding`,
@@ -42,10 +43,6 @@ module.exports = {
           {
             title: `Newsletter`,
             slug: `/newsletter`,
-          },
-          {
-            title: `Tesla`,
-            slug: `/tesla-referral-link`,
           },
         ],
         externalLinks: [
