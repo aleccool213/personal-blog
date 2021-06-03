@@ -15,7 +15,8 @@
     "cy:run": "cypress run",
     "cy:run:open": "cypress open",
     "cy:run:chrome": "cypress run --browser chrome",
-    "cy:run:firefox": "cypress run --browser firefox"
+    "cy:run:firefox": "cypress run --browser firefox",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^2.7.6",
@@ -26,20 +27,15 @@
     "gatsby-plugin-manifest": "^2.12.0",
     "gatsby-plugin-netlify": "^2.11.0",
     "gatsby-plugin-sitemap": "^2.12.0",
-    "husky": "^4.3.8",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
-    "@testing-library/cypress": "7.0.3",
+    "@testing-library/cypress": "7.0.6",
     "cross-env": "^7.0.3",
-    "cypress": "6.4.0",
-    "start-server-and-test": "1.12.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
+    "cypress": "7.4.0",
+    "husky": "^6.0.0",
+    "start-server-and-test": "1.12.3"
   },
   "engines": {
     "node": "v14.15.4",
