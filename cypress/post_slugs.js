@@ -23,6 +23,7 @@ const postSlugs = [
   "build-next-js-blog-with-cosmics-graphql-api",
   "running-sql-migrations-before-booting-docker-compose-services",
   "storybook-develop-react-components-faster",
+  "why-switched-apollo-client-urql",
 ];
 
 module.exports = postSlugs;
