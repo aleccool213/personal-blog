@@ -1,0 +1,179 @@
+---
+title: "Why I (finally) switched to urql from Apollo Client"
+banner: ./images/why-switched-apollo-client-urql.jpeg
+date: 2021-06-09
+slug: "/why-switched-apollo-client-urql/"
+description: Enter urql, which is a great alternative. It isn’t the new kid on the block — it’s been around since 2019 — but I’ve just made the switch and stand by my decision.
+canonicalUrl: https://blog.logrocket.com/why-i-finally-switched-to-urql-from-apollo-client/
+tags:
+  - React
+  - JavaScript
+  - GraphQL
+---
+
+Using GraphQL in your frontend application is a like playing a different ball game than when using REST. Client libraries such as [urql](https://formidable.com/open-source/urql/), [Apollo Client](https://www.apollographql.com/), and [Relay](https://relay.dev/) are able to offer different capabilities than REST libraries such as [Axios](https://github.com/axios/axios) or [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+
+How come? Because GraphQL is an opinionated API spec where both the server and client buy into [a schema format](https://graphql.org/learn/schema/) and [querying format](https://graphql.org/learn/queries/). Based on this, they can provide multiple advanced features, such as utilities for caching data, auto-generation of React Hooks based on operations, and optimistic mutations.
+
+Sometimes libraries can be too opinionated and offer too much "magic". I’ve been using Apollo Client for quite some time and have become frustrated with its caching and local state mechanisms.
+
+This “bloat,” along with recently seeing how mismanaged the open-source community is, finally broke the camel's back for me. I realized that I needed to look elsewhere for a GraphQL client library.
+
+## What is urql?
+
+Enter urql, which is a great alternative. It isn’t the new kid on the block — it’s been around since 2019 — but I’ve just made the switch and stand by my decision.
+
+[Most of the lingo is the same as Apollo Client](https://blog.logrocket.com/exploring-urql-from-an-apollo-perspective/), which made switching from Apollo to urql fairly straightforward. urql has most of the same features but also offers improvements, including better documentation, better configuration defaults, and first-party support for things like offline mode, file uploads, authentication flows, and a first-party Next.js plugin.
+
+When you stack Apollo Client and urql against each other, you’ll start wondering why Apollo Client has been so popular in the first place.
+
+## Bye Apollo Client 👋, hello urql
+
+As I'm writing this, the [Apollo Client Github repository](https://github.com/apollographql/apollo-client) issue count stands at 795. In comparison, [urql has 16](https://github.com/FormidableLabs/urql). “But issue count doesn't correlate to code quality!" is what you may say to me. That’s true, but it gives you the same feeling as a code smell — you know something isn't right.
+
+Looking deeper, you can see a large amount of issues open, bugs taking months to fix, and pull requests never seem to be merged from outside contributors. Apollo seems unfocused on building the great client package the community wants.
+
+This sort of behaviour indicates to me that Apollo is using open-source merely for marketing and not to make their product better. The company wants you to get familiar with Apollo Client and then buy into their products, not truly open-source software in my opinion. This is one of the negatives of [the open-core business model](https://linuxinsider.com/story/open-core-debate-the-battle-for-a-business-model-66807.html).
+
+I started to look elsewhere for a GraphQL Client that had a more happy and cohesive community. When a tool is designed well and with features the community wants, fewer issues are created and there is less of a need for pull requests. [Formidable](https://formidable.com/) is the agency behind urql, and they care about creating applications in fast and maintainable ways, compared to trying to funnel users into using their products.
+
+## Why use urql?
+
+For me, urql is a breath of fresh air after working with Apollo Client for so long. There are a lot of little things that add up to a much better developer experience, especially for newcomers. Here are just a few.
+
+**Documentation** **in urql is thorough**
+Having great documentation is a key feature for any open-source library. Without great docs, there will be more confusion among the community over how to use it and how it works internally. I attribute [urql](https://formidable.com/open-source/urql/docs/)[’](https://formidable.com/open-source/urql/docs/)s thorough [docs](https://formidable.com/open-source/urql/docs/) to why it has such a low issue count. It only took me a few hours to read the _entire_ documentation.
+
+This is impressive because it shows how focused the library is and how thought-out the structure is. Some of the highlights include [this one-pager on the architecture of how urql works](https://formidable.com/open-source/urql/docs/architecture/) and [this table comparing itself to other GraphQL clients (like Apollo).](https://formidable.com/open-source/urql/docs/comparison/)
+
+**Plugins and packages have first-party support in urql**
+urql really caught my attention when I heard it had first-class support for additional functionality such as [offline mode](https://formidable.com/open-source/urql/docs/graphcache/offline/), [file uploads](https://formidable.com/open-source/urql/docs/advanced/persistence-and-uploads/#file-uploads), [authentication](https://formidable.com/open-source/urql/docs/api/auth-exchange/), and [Next.js](https://formidable.com/open-source/urql/docs/advanced/server-side-rendering/#nextjs). These are all features that I've always thought of as basic for a GraphQL client, and it's great to see urql have first-party support for them.
+
+For instance, [the urql authentication exchange package](https://formidable.com/open-source/urql/docs/api/auth-exchange/) has you implementing only a few methods to have an entire authentication flow within your client, including token refresh logic. You can achieve all of these things in Apollo Client, but there are no official docs or packages. This means you spend more time to research community solutions, hacks, and code.
+
+```javascript
+// All the code needed to support offline mode in urql
+import { createClient } from "urql";
+import { offlineExchange } from "@urql/exchange-graphcache";
+import { makeDefaultStorage } from "@urql/exchange-graphcache/default-storage";
+
+const storage = makeDefaultStorage({
+  idbName: "apiCache",
+  maxAge: 7, // The maximum age of the persisted data in days
+});
+
+const cache = offlineExchange({
+  schema,
+  storage,
+  updates: {
+    /* ... */
+  },
+  optimistic: {
+    /* ... */
+  },
+});
+
+const client = createClient({
+  url: "http://localhost:3000/graphql",
+  exchanges: [cache],
+});
+```
+
+It's also great that I haven't had to give up things I loved when working with Apollo Client, such as the dev tools and React hooks generation because urql has a [dev tools browser extension](https://formidable.com/open-source/urql/docs/advanced/debugging/#devtools) and [a plugin for graphql-code-generator](https://www.graphql-code-generator.com/docs/plugins/typescript-urql).
+
+**Caching** **in urql is easy and effective**
+There is a common developer motto that cache invalidation is one of the hardest things in programming. After many hours debugging Apollo Clients normalized cache, I believe it. urql's caching defaults are sensible to the newcomer and can be extended to become more advanced.
+
+I appreciate that it doesn't force you to use a normalized cache by default, but [comes with a document cache](https://formidable.com/open-source/urql/docs/basics/document-caching/) instead. This works by just hashing the query and its variables — it’s simple and effective!
+
+Learning how a complex, fully normalized caching store works just to get started using a client library seems heavy handed. Only offering normalized caching is something I felt Apollo Client got wrong.
+
+There is a steep learning curve to managing a normalized cache, and it's unnecessary for many applications. It's fantastic that urql offers this as [a separate package](https://formidable.com/open-source/urql/docs/graphcache/normalized-caching/) that you can opt into at a later time. I’ve seen this trend demonstrated with other packages as well such as [React Query.](https://react-query.tanstack.com/)
+
+> While a vast majority of users do not actually need a normalized cache or even benefit from it as much as they believe they do. [- React Query Docs](https://react-query.tanstack.com/graphql#_top)
+
+```javascript
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  // Normalized cache is required
+  cache: new InMemoryCache(),
+});
+
+import { createClient } from "urql";
+
+// Document cache enabled by default
+export const client = createClient({
+  url: "http://localhost:4000/graphql",
+});
+```
+
+**Local** **s\*\***tate\*\* **is simplified in urql**
+urql stays true to server data and doesn't provide functions to manage local state like Apollo Client does. In my opinion, this is perfectly fine as full-on libraries to manage local state in React are becoming less needed. Mixing server-side state and local state seems ideal at first (one place for all state) but can lead to problems when you need to figure out which data is fresh versus which is stale and when to update it.
+
+[React Context](https://reactjs.org/docs/context.html) is a great solution for situations where you have lots of prop drilling going on, which is sometimes the main reason people reach for a local state management library. I would also recommend [XState](https://github.com/davidkpiano/xstate) if you are looking for a way to manage stateful workflows, which sometimes people use [Redux reducers](https://redux.js.org/recipes/reducing-boilerplate#reducers) for.
+
+**Understandable default behavior with Exchanges**
+[Exchanges](https://formidable.com/open-source/urql/docs/architecture/#the-exchanges) are similar to links in Apollo Client and offer ways to extend the functionality of the client by intercepting requests. The difference with urql is that you can opt into even the basic ones, allowing you more control and understanding over the behaviour of the client.
+
+[When getting started](https://formidable.com/open-source/urql/docs/basics/react-preact/#setting-up-the-client), the client has no required exchanges and uses a default list. In my experience, starting off with just a few exchanges and adding more as time went on or when I needed them made debugging easier. urql shows that it takes extensibility seriously in supporting many different use-cases.
+
+Here is an example of the exchanges you might use after you get used to urql:
+
+```javascript
+import {
+  createClient,
+  dedupExchange,
+  cacheExchange,
+  fetchExchange,
+} from "urql";
+
+const client = createClient({
+  url: "http://localhost:4000/graphql",
+  exchanges: [
+    // deduplicates requests if we send the same queries twice
+    dedupExchange,
+    // from prior example
+    cacheExchange,
+    // responsible for sending our requests to our GraphQL API
+    fetchExchange,
+  ],
+});
+```
+
+**uqrl offers a** **Next.js** **s\*\***upport\*\* **plugin**
+Next.js is one of the most popular ways to use React these days. Integrating Apollo Client to use Next.js SSR in the past has always been a huge pain. With every upgrade, [you will have to look for examples](https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js#L30) and likely need to change how it works.
+
+With no official plugin from Apollo, you will have to keep maintaining this integration. As mentioned previously, urql has an official plugin for Next.js. This makes it easy to integrate.
+
+```javascript
+// Simple React component integrating with Next.js using the plugin
+import React from "react";
+import Head from "next/head";
+import { withUrqlClient } from "next-urql";
+
+import PokemonList from "../components/pokemon_list";
+import PokemonTypes from "../components/pokemon_types";
+
+const Root = () => (
+  <div>
+    <Head>
+      <title>Root</title>
+      <link rel="icon" href="/static/favicon.ico" />
+    </Head>
+
+    <PokemonList />
+    <PokemonTypes />
+  </div>
+);
+
+export default withUrqlClient(() => ({
+  url: "https://graphql-pokemon.now.sh",
+}))(Root);
+```
+
+**Conclusion**
+urql has advantages over Apollo Client when it comes to its unified community, great documentation, and first-party plugins and caching system. I especially like how they seem to be working and engaging with the community instead of against it.
+
+I’ve been trying a lot of GraphQL clients lately to see what else is out there to compare them to Apollo and it's been refreshing to see how great urql is. I foresee myself using it going forward for all my GraphQL apps. I hope this prompts you to try out urql for yourself and see what you think. Thanks for reading!
